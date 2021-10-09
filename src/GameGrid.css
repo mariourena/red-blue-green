@@ -12,14 +12,14 @@
   border-radius: 5px;
 }
 
-.grid-cell[data-state='Red'] {
+.grid-cell[data-state="Red"] {
   background-color: red;
 }
 
-.grid-cell[data-state='Blue'] {
+.grid-cell[data-state="Blue"] {
   background-color: blue;
 }
 
-.grid-cell[data-state='Green'] {
+.grid-cell[data-state="Green"] {
   background-color: green;
 }
