@@ -1,0 +1,25 @@
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr 1fr;
+  grid-gap: 1em;
+  height: 100%;
+}
+
+.grid-cell {
+  background-color: beige;
+  color: #000;
+  border-radius: 5px;
+}
+
+.grid-cell[data-state='Red'] {
+  background-color: red;
+}
+
+.grid-cell[data-state='Blue'] {
+  background-color: blue;
+}
+
+.grid-cell[data-state='Green'] {
+  background-color: green;
+}

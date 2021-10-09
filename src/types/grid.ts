@@ -19,8 +19,3 @@ export interface IGridCell {
     coords: ICellCoords;
 }
 
-export interface IGrid {
-    updateClickCount: () => void;
-    winGame: () => void;
-}
-

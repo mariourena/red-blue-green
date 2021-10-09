@@ -1,29 +1,52 @@
 import React from 'react';
 import { GameState } from "./types/grid";
-import Grid from './components/Grid';
-import './App.css';
+import GameGrid from './components/GameGrid';
+import GameStats from './components/GameStats';
+import { 
+  Box, 
+  Container, 
+  Typography } from '@mui/material';
 
 const App: React.FC = () => {
   const [clickCount, setClickCount] = React.useState<number>(0);
   const [gameState, setGameState] = React.useState<GameState>(GameState.NotWon);
 
-  const updateClickCount = () => setClickCount(clickCount + 1);
+  const updateClickCount = () => {
+    if (gameState === GameState.NotWon) {
+      setClickCount(clickCount + 1);
+    }
+  }
   const winGame = () => setGameState(GameState.Won);
+  const resetGame = () => {
+    setClickCount(0);
+    setGameState(GameState.NotWon);
+  }
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <h1>Welcome to the <span className="red">red</span>, <span className="blue">blue</span>, <span className="green">green</span> game!</h1>
-        <aside>To win, set all the boxes to green...</aside>
-      </header>
-      <main>
-        { gameState === GameState.Won && <h1>You Win!!!</h1>}
-        <Grid updateClickCount={updateClickCount} winGame={winGame} />
-      </main>
-      <footer>
-        <aside>Click count {clickCount}</aside>
-      </footer>
-    </div>
+    <Container maxWidth="lg" className="App">
+      <Box display="grid" gridTemplateColumns="1fr 2fr" gap={2} sx={{height:'100vh'}}>
+        <Box sx={{position: 'relative'}}>
+          <Typography component="div" variant="h1" sx={{color: 'cadetblue'}}>
+            Welcome!
+          </Typography>
+          <Typography component="aside">
+            Win the game by getting all the squares to turn green. Let's Play!
+          </Typography>
+          <GameStats 
+            clickCount={clickCount} 
+            gameState={gameState}
+            resetGame={resetGame}
+          />
+        </Box>
+        <Box sx={{padding: '5vh 5vw'}}>
+          <GameGrid 
+            clickCount={clickCount}
+            updateClickCount={updateClickCount} 
+            winGame={winGame} 
+          />
+        </Box>
+      </Box>
+    </Container>
   );
 }
 

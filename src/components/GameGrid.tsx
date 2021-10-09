@@ -2,13 +2,24 @@ import React from "react";
 import { 
     CellState, 
     ICellCoords, 
-    IGrid, 
     IGridCell } from "../types/grid";
 import GridCell from "./GridCell";
 
-const Grid: React.FC<IGrid> = (props: IGrid) => {
+import '../GameGrid.css';
+
+interface Props {
+    clickCount: number;
+    updateClickCount: () => void;
+    winGame: () => void;
+}
+
+const GameGrid: React.FC<Props> = (props: Props) => {
    
-    const [cells, setCells] = React.useState<IGridCell[][]>(initializeCells(4));
+    const [cells, setCells] = React.useState<IGridCell[][]>([]);
+
+    React.useEffect(() => {
+        setCells(initializeCells(4));
+    }, [props.clickCount === 0]);
 
     /**
      * Single click event handler for page efficiency
@@ -47,7 +58,7 @@ const Grid: React.FC<IGrid> = (props: IGrid) => {
     </section>
 }
 
-export default Grid;
+export default GameGrid;
 
 // Helpers
 
