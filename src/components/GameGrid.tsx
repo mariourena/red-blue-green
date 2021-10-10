@@ -5,6 +5,7 @@ import { Box } from "@mui/material";
 import GameCell from "./GameCell";
 
 interface Props {
+  demensions: number;
   resetSwitch: boolean;
   updateClickCount: () => void;
   winGame: () => void;
@@ -15,7 +16,7 @@ const GameGrid: React.FC<Props> = (props: Props) => {
   const [serializedCells, setCells] = useState<GameGridCells>([]);
 
   useEffect(() => {
-    setGame(new Game(4, CellState.Red));
+    setGame(new Game(props.demensions, CellState.Red));
   }, [props.resetSwitch]);
 
   useEffect(() => {

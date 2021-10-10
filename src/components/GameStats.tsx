@@ -41,7 +41,7 @@ const GameStats: React.FC<Props> = (props: Props) => (
           <ListItemIcon>
             <RestartAlt />
           </ListItemIcon>
-          <ListItemButton onClick={props.resetGame} sx={{ paddingLeft: 0 }}>
+          <ListItemButton onClick={props.resetGame} sx={{ paddingLeft: 0 }} data-testid="reset-button">
             <ListItemText primary="Click to start over" />
           </ListItemButton>
         </ListItem>

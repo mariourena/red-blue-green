@@ -61,6 +61,7 @@ const App: React.FC = () => {
           </Box>
           <Box>
             <GameGrid
+              demensions={4}
               resetSwitch={resetSwitch}
               updateClickCount={updateClickCount}
               winGame={winGame}

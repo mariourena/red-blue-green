@@ -10,6 +10,7 @@ stateToCellColor.set(CellState.Red, "red");
 const GameCell: React.FC<GameCellProps> = (props: GameCellProps) => (
   <Box
     className="grid-cell"
+    data-testid="grid-cell"
     data-state={props.state}
     data-x={props.coords.x}
     data-y={props.coords.y}
