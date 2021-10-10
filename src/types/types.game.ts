@@ -9,12 +9,14 @@ export enum GameState {
   Won,
 }
 
-export interface ICellCoords {
+export interface CellCoords {
   x: number;
   y: number;
 }
 
-export interface IGridCell {
+export interface GameCell {
   state: CellState;
-  coords: ICellCoords;
+  coords: CellCoords;
 }
+
+export type GameGridCells = GameCell[][];

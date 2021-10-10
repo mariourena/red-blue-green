@@ -1,5 +1,5 @@
 import React from "react";
-import { IGridCell, CellState } from "../types/grid";
+import { CellState, GameCell as GameCellProps } from "../types/types.game";
 import { Box } from "@mui/material";
 
 const stateToCellColor: Map<CellState, string> = new Map();
@@ -7,7 +7,7 @@ stateToCellColor.set(CellState.Blue, "blue");
 stateToCellColor.set(CellState.Green, "green");
 stateToCellColor.set(CellState.Red, "red");
 
-const GameCell: React.FC<IGridCell> = (props: IGridCell) => (
+const GameCell: React.FC<GameCellProps> = (props: GameCellProps) => (
   <Box
     className="grid-cell"
     data-state={props.state}

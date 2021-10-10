@@ -1,5 +1,5 @@
 import React from "react";
-import { GameState } from "./types/grid";
+import { GameState } from "./types/types.game";
 import { Box, Container, Typography } from "@mui/material";
 import Confetti from "react-confetti";
 import GameGrid from "./components/GameGrid";
@@ -26,8 +26,8 @@ const App: React.FC = () => {
         <Box
           display="grid"
           gridTemplateColumns="1fr 2fr"
-          gap={2}
-          sx={{ height: "100vh" }}
+          gap={5}
+          sx={{ height: "100vh", padding: "5vh 5vw" }}
         >
           <Box sx={{ position: "relative" }}>
             <Typography
@@ -57,7 +57,7 @@ const App: React.FC = () => {
               resetGame={resetGame}
             />
           </Box>
-          <Box sx={{ padding: "5vh 5vw" }}>
+          <Box>
             <GameGrid
               clickCount={clickCount}
               updateClickCount={updateClickCount}
