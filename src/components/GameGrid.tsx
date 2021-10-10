@@ -1,8 +1,7 @@
 import React from "react";
 import { CellState, ICellCoords, IGridCell } from "../types/grid";
-import GridCell from "./GridCell";
-
-import "../GameGrid.css";
+import { Box } from "@mui/material";
+import GameCell from "./GameCell";
 
 interface Props {
   clickCount: number;
@@ -12,10 +11,11 @@ interface Props {
 
 const GameGrid: React.FC<Props> = (props: Props) => {
   const [cells, setCells] = React.useState<IGridCell[][]>([]);
+  const initializationRequired: boolean = props.clickCount === 0;
 
   React.useEffect(() => {
     setCells(initializeCells(4));
-  }, [props.clickCount === 0]);
+  }, [initializationRequired]);
 
   /**
    * Single click event handler for page efficiency
@@ -42,13 +42,19 @@ const GameGrid: React.FC<Props> = (props: Props) => {
   };
 
   return (
-    <section className="grid" onClick={handleClick}>
+    <Box
+      display="grid"
+      gridTemplateColumns={`repeat(${cells.length}, 1fr)`}
+      gap={2}
+      onClick={handleClick}
+      sx={{ height: "100%" }}
+    >
       {cells.map((row, x) =>
         row.map((cell, y) => (
-          <GridCell key={`${x}${y}`} state={cell.state} coords={cell.coords} />
+          <GameCell key={`${x}${y}`} state={cell.state} coords={cell.coords} />
         ))
       )}
-    </section>
+    </Box>
   );
 };
 

@@ -1,8 +1,9 @@
 import React from "react";
 import { GameState } from "./types/grid";
+import { Box, Container, Typography } from "@mui/material";
+import Confetti from "react-confetti";
 import GameGrid from "./components/GameGrid";
 import GameStats from "./components/GameStats";
-import { Box, Container, Typography } from "@mui/material";
 
 const App: React.FC = () => {
   const [clickCount, setClickCount] = React.useState<number>(0);
@@ -65,6 +66,13 @@ const App: React.FC = () => {
           </Box>
         </Box>
       </Container>
+      {gameState === GameState.Won && (
+        <Confetti
+          style={{ height: "100vh", width: "100vw" }}
+          width={1000}
+          height={1000}
+        />
+      )}
     </>
   );
 };
