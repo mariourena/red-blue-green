@@ -59,7 +59,7 @@ const GameGrid: React.FC<Props> = (props: Props) => {
     >
       {serializedCells.map((row, x) =>
         row.map((cell, y) => (
-          <GameCell key={`${x}${y}`} state={cell.state} coords={cell.coords} />
+          <GameCell key={`${x}${y}`} cell={cell} />
         ))
       )}
     </Box>
