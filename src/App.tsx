@@ -8,6 +8,7 @@ import GameStats from "./components/GameStats";
 const App: React.FC = () => {
   const [clickCount, setClickCount] = React.useState<number>(0);
   const [gameState, setGameState] = React.useState<GameState>(GameState.NotWon);
+  const [resetSwitch, setResetSwitch] = React.useState<boolean>(true);
 
   const updateClickCount = () => {
     if (gameState === GameState.NotWon) {
@@ -16,6 +17,7 @@ const App: React.FC = () => {
   };
   const winGame = () => setGameState(GameState.Won);
   const resetGame = () => {
+    setResetSwitch(!resetSwitch);
     setClickCount(0);
     setGameState(GameState.NotWon);
   };
@@ -48,7 +50,7 @@ const App: React.FC = () => {
                 Win the game by getting all the squares to turn green. Start by
                 clicking any square in the grid. The square will either change
                 color and/or the color of its neighbors.
-                <em>Let's Play!</em>
+                <em> Let's Play!</em>
               </Typography>
             </Box>
             <GameStats
@@ -59,7 +61,7 @@ const App: React.FC = () => {
           </Box>
           <Box>
             <GameGrid
-              clickCount={clickCount}
+              resetSwitch={resetSwitch}
               updateClickCount={updateClickCount}
               winGame={winGame}
             />

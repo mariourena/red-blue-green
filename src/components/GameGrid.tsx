@@ -5,7 +5,7 @@ import { Box } from "@mui/material";
 import GameCell from "./GameCell";
 
 interface Props {
-  clickCount: number;
+  resetSwitch: boolean;
   updateClickCount: () => void;
   winGame: () => void;
 }
@@ -13,11 +13,10 @@ interface Props {
 const GameGrid: React.FC<Props> = (props: Props) => {
   const [game, setGame] = useState<Game>();
   const [serializedCells, setCells] = useState<GameGridCells>([]);
-  const initializationRequired: boolean = props.clickCount === 0;
 
   useEffect(() => {
     setGame(new Game(4, CellState.Red));
-  }, [initializationRequired]);
+  }, [props.resetSwitch]);
 
   useEffect(() => {
     if (game) {
@@ -31,12 +30,11 @@ const GameGrid: React.FC<Props> = (props: Props) => {
    */
   const handleClick = (event: React.MouseEvent<HTMLDivElement>) => {
     // Capture click event target
-    const cellElementClicked: HTMLElement | null = captureCellFromClick(
+    const cellElementClicked: HTMLElement | undefined = captureCellFromClick(
       event.target as HTMLElement
     );
-
     if (cellElementClicked) {
-      const coords: CellCoords | null =
+      const coords: CellCoords | undefined =
         getCellCoordsFromElement(cellElementClicked);
 
       if (coords && game) {
@@ -78,11 +76,13 @@ export default GameGrid;
  * @param clickTarget
  * @returns HTMLElement | null
  */
-function captureCellFromClick(clickTarget: HTMLElement): HTMLElement | null {
+function captureCellFromClick(
+  clickTarget: HTMLElement
+): HTMLElement | undefined {
   while (!isGridCellElement(clickTarget) && clickTarget.parentElement) {
     clickTarget = clickTarget.parentElement;
   }
-  return isGridCellElement(clickTarget) ? clickTarget : null;
+  return isGridCellElement(clickTarget) ? clickTarget : undefined;
 }
 
 /**
@@ -103,12 +103,12 @@ function isGridCellElement(element: HTMLElement): boolean {
  */
 function getCellCoordsFromElement(
   cellElementClicked: HTMLElement
-): CellCoords | null {
+): CellCoords | undefined {
   const { x, y } = cellElementClicked.dataset;
   return x && y
     ? ({
         x: parseInt(x),
         y: parseInt(y),
       } as CellCoords)
-    : null;
+    : undefined;
 }

@@ -23,6 +23,12 @@ const GameStats: React.FC<Props> = (props: Props) => (
     <CardContent sx={{ flex: "1 0 auto" }}>
       <Typography component="div" variant="h6">
         Game Stats
+        {props.gameState === GameState.Won && (
+          <Typography component="small">
+            {" "}
+            <Celebration color="success" /> You win!!!{" "}
+          </Typography>
+        )}
       </Typography>
       <List>
         <ListItem disablePadding>
@@ -33,25 +39,11 @@ const GameStats: React.FC<Props> = (props: Props) => (
         </ListItem>
         <ListItem disablePadding>
           <ListItemIcon>
-            <Celebration
-              color={props.gameState === GameState.Won ? "success" : "disabled"}
-            />
+            <RestartAlt />
           </ListItemIcon>
-          <ListItemText
-            primary={
-              props.gameState === GameState.Won
-                ? "You win!!!"
-                : "You haven't won yet - keep trying"
-            }
-          />
-          {props.gameState === GameState.Won && (
-            <ListItemButton onClick={props.resetGame}>
-              <ListItemIcon>
-                <RestartAlt />
-              </ListItemIcon>
-              <ListItemText primary="Click to start over" />
-            </ListItemButton>
-          )}
+          <ListItemButton onClick={props.resetGame} sx={{ paddingLeft: 0 }}>
+            <ListItemText primary="Click to start over" />
+          </ListItemButton>
         </ListItem>
       </List>
     </CardContent>
