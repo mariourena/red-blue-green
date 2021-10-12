@@ -17,7 +17,7 @@ const GameGrid: React.FC<Props> = (props: Props) => {
 
   useEffect(() => {
     setGame(new Game(props.demensions, CellState.Red));
-  }, [props.resetSwitch]);
+  }, [props.resetSwitch, props.demensions]);
 
   useEffect(() => {
     if (game) {
